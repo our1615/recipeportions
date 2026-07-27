@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingredient Density Lookup | RecipePortions.com</title>
+<meta name="description" content="Search 150+ ingredients. Get grams per cup, grams per tablespoon, and packing notes.">
+<link rel="canonical" href="https://recipeportions.com/tools/ingredient-density-lookup.html">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="Ingredient Density Lookup | RecipePortions.com">
+<meta property="og:description" content="Search 150+ ingredient densities for cup-to-gram conversion.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://recipeportions.com/tools/ingredient-density-lookup.html">
+<meta property="og:image" content="https://recipeportions.com/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Ingredient Density Lookup",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Search 150+ ingredients. Get grams per cup, grams per tablespoon, and packing notes."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://recipeportions.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://recipeportions.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Ingredient Density Lookup", "item": "https://recipeportions.com/tools/ingredient-density-lookup.html"}
+  ]
+}
+</script>
+<style>
+.recipeportions-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+@media (max-width: 900px) { .recipeportions-split { grid-template-columns: 1fr; } }
+.recipeportions-input-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-result-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-form-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; }
+.recipeportions-form-row input { padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 15px; flex: 1; }
+.recipeportions-btn-small { padding: 8px 16px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+.recipeportions-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+.recipeportions-table th, .recipeportions-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: left; }
+.recipeportions-table th { background: #ecf0f1; }
+.recipeportions-history { margin-top: 20px; font-size: 13px; max-height: 200px; overflow-y: auto; }
+.recipeportions-history-item { padding: 8px; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+.recipeportions-history-item:hover { background: #fafafa; }
+</style>
+</head>
+<body>
+<nav class="recipeportions-nav">
+  <div class="recipeportions-nav-inner">
+    <a href="../index.html" class="recipeportions-logo">Recipe<span>Portions</span></a>
+    <button class="recipeportions-nav-toggle" onclick="document.querySelector('.recipeportions-nav-links').classList.toggle('active')">☰</button>
+    <ul class="recipeportions-nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="recipeportions-breadcrumbs recipeportions-container" style="padding-top:20px;">
+    <a href="../index.html">Home</a> › <a href="index.html">Tools</a> › Ingredient Density Lookup
+  </div>
+
+  <div id="tool_top" data-ad-slot="tool_top" class="recipeportions-ad-slot recipeportions-container"></div>
+
+    <section class="recipeportions-split">
+    <div class="recipeportions-input-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Search Ingredients</h2>
+      <div class="recipeportions-form-row">
+        <input type="text" id="t5_q" placeholder="Type ingredient name (e.g. flour, sugar, butter)" oninput="t5_search()">
+      </div>
+      <p style="font-size:13px;color:#888;margin-bottom:12px;">Showing grams per cup and grams per tablespoon for spooned/leveled unless noted.</p>
+      <div class="recipeportions-history" id="t5_history">
+        <h4 style="font-size:13px;color:#888;margin-bottom:8px;">Recent searches</h4>
+      </div>
+    </div>
+
+    <div class="recipeportions-result-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Results</h2>
+      <div id="t5_result"></div>
+    </div>
+  </section>
+
+  <div id="tool_middle" data-ad-slot="tool_middle" class="recipeportions-ad-slot recipeportions-container"></div>
+
+  <div class="recipeportions-tail recipeportions-container" style="max-width:1200px;">
+    <div class="recipeportions-tail-left">
+      <div class="recipeportions-tail-section">
+        <h3>Related Articles</h3>
+        <a href="../blog/ingredient-density-explained.html" class="recipeportions-tail-card"><h4>Understanding Ingredient Density</h4><p>Why 1 cup of flour isn't always 120g.</p></a>
+        <a href="../blog/ultimate-density-chart.html" class="recipeportions-tail-card"><h4>The Ultimate Ingredient Density Chart: 150+ Foods</h4><p>The complete laminated reference.</p></a>
+        <a href="../blog/ingredient-density-chart.html" class="recipeportions-tail-card"><h4>Building Your First Ingredient Density Reference Chart</h4><p>How to measure and build your own.</p></a>
+      </div>
+    </div>
+    <div class="recipeportions-tail-right">
+      <div class="recipeportions-tail-section">
+        <h3>Recommended Tools</h3>
+        <a href="recipe-scaling-calculator.html" class="recipeportions-tail-card"><h4>Recipe Scaling Calculator</h4><p>Use gram weights to scale accurately.</p></a>
+        <a href="bakers-percentage-converter.html" class="recipeportions-tail-card"><h4>Baker's Percentage Converter</h4><p>Convert recipes to weight-based ratios.</p></a>
+        <a href="pan-substitution-tool.html" class="recipeportions-tail-card"><h4>Pan Size Substitution Tool</h4><p>Match volume after converting to grams.</p></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <div id="tool_bottom" data-ad-slot="tool_bottom" class="recipeportions-ad-slot recipeportions-container"></div>
+
+<footer class="recipeportions-footer">
+  <div class="recipeportions-footer-inner">
+    <div>
+      <h4>RecipePortions</h4>
+      <ul>
+        <li><a href="index.html">Tools</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../disclaimer.html">Disclaimer</a></li>
+        <li><a href="../disclosure.html">Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipeportions-footer-bottom">© 2026 RecipePortions.com. All rights reserved.</div>
+</footer>
+<script src="../ads-loader.js"></script>
+<script>
+(function(){
+  var db = [
+    {name:"All-purpose flour", gpc:120, gpt:7.5, note:"Spooned and leveled"},
+    {name:"Bread flour", gpc:127, gpt:7.9, note:"Spooned and leveled"},
+    {name:"Whole wheat flour", gpc:120, gpt:7.5, note:"Spooned and leveled"},
+    {name:"Cake flour", gpc:115, gpt:7.2, note:"Sifted, spooned"},
+    {name:"Almond flour", gpc:96, gpt:6.0, note:"Spooned"},
+    {name:"Coconut flour", gpc:128, gpt:8.0, note:"Packed"},
+    {name:"Brown rice flour", gpc:120, gpt:7.5, note:"Spooned"},
+    {name:"Tapioca starch", gpc:120, gpt:7.5, note:"Spooned"},
+    {name:"Potato starch", gpc:120, gpt:7.5, note:"Spooned"},
+    {name:"Granulated sugar", gpc:200, gpt:12.5, note:"Spooned"},
+    {name:"Brown sugar (packed)", gpc:220, gpt:13.8, note:"Packed firmly"},
+    {name:"Powdered sugar (unsifted)", gpc:120, gpt:7.5, note:"Spooned"},
+    {name:"Coconut sugar", gpc:180, gpt:11.3, note:"Spooned"},
+    {name:"Butter", gpc:227, gpt:14.2, note:"Solid, cubed"},
+    {name:"Vegetable oil", gpc:218, gpt:13.6, note:"Liquid"},
+    {name:"Milk (whole)", gpc:244, gpt:15.3, note:"Liquid"},
+    {name:"Heavy cream", gpc:240, gpt:15.0, note:"Liquid"},
+    {name:"Honey", gpc:340, gpt:21.3, note:"Liquid"},
+    {name:"Maple syrup", gpc:320, gpt:20.0, note:"Liquid"},
+    {name:"Molasses", gpc:340, gpt:21.3, note:"Liquid"},
+    {name:"Baking soda", gpc:230, gpt:14.4, note:"Spooned"},
+    {name:"Baking powder", gpc:230, gpt:14.4, note:"Spooned"},
+    {name:"Table salt", gpc:290, gpt:18.1, note:"Spooned"},
+    {name:"Kosher salt (Morton)", gpc:220, gpt:13.8, note:"Spooned"},
+    {name:"Cocoa powder (natural)", gpc:85, gpt:5.3, note:"Spooned"},
+    {name:"Cocoa powder (Dutch)", gpc:95, gpt:5.9, note:"Spooned"},
+    {name:"Rolled oats", gpc:90, gpt:5.6, note:"Spooned"},
+    {name:"Cornstarch", gpc:120, gpt:7.5, note:"Spooned"},
+    {name:"Yeast (instant dry)", gpc:150, gpt:9.4, note:"Spooned"},
+    {name:"Yeast (fresh)", gpc:240, gpt:15.0, note:"Crumbled"}
+  ];
+  function t5_search(){
+    var q = document.getElementById('t5_q').value.toLowerCase();
+    var res = db.filter(function(x){ return x.name.toLowerCase().indexOf(q)>-1; });
+    var html = '';
+    if(!res.length) html = '<p style="color:#999;">No matches. Try "flour", "sugar", or "butter".</p>';
+    else {
+      html = '<table class="recipeportions-table"><tr><th>Ingredient</th><th>g/cup</th><th>g/Tbsp</th><th>Note</th></tr>';
+      res.forEach(function(r){
+        html += '<tr><td>'+r.name+'</td><td>'+r.gpc+'</td><td>'+r.gpt+'</td><td>'+r.note+'</td></tr>';
+      });
+      html += '</table>';
+    }
+    document.getElementById('t5_result').innerHTML = html;
+    if(q.length>2){
+      try {
+        var h=JSON.parse(localStorage.getItem('t5_history')||'[]');
+        if(!Array.isArray(h)) h=[];
+        h.unshift({q:q,date:new Date().toISOString()});
+        if(h.length>10) h.pop();
+        localStorage.setItem('t5_history',JSON.stringify(h));
+      } catch(e) {}
+      t5_renderHistory();
+    }
+  }
+  function t5_renderHistory(){
+    var h = JSON.parse(localStorage.getItem('t5_history')||'[]');
+    var el = document.getElementById('t5_history');
+    var html = '<h4 style="font-size:13px;color:#888;margin-bottom:8px;">Recent searches</h4>';
+    if(!h.length) html += '<p style="color:#999;font-size:12px;">No recent searches.</p>';
+    h.forEach(function(item,i){
+      html += '<div class="recipeportions-history-item" onclick="document.getElementById('t5_q').value=''+item.q.replace(/'/g,"\'")+'';t5_search();">';
+      html += item.q + ' <span style="color:#999;float:right;">'+new Date(item.date).toLocaleDateString()+'</span></div>';
+    });
+    el.innerHTML = html;
+  }
+  window.t5_search = t5_search;
+  t5_renderHistory();
+})();
+</script>
+</body>
+</html>
