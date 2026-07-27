@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portion Size Planner | RecipePortions.com</title>
+<meta name="description" content="Plan portions for events with adult/child/teen ratios, dietary restrictions, and auto-generated shopping lists.">
+<link rel="canonical" href="https://recipeportions.com/tools/portion-size-planner.html">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="Portion Size Planner | RecipePortions.com">
+<meta property="og:description" content="Event portion planner with guest ratios and dietary counts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://recipeportions.com/tools/portion-size-planner.html">
+<meta property="og:image" content="https://recipeportions.com/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Portion Size Planner",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Plan portions for events with adult/child/teen ratios, dietary restrictions, and shopping lists."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://recipeportions.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://recipeportions.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Portion Size Planner", "item": "https://recipeportions.com/tools/portion-size-planner.html"}
+  ]
+}
+</script>
+<style>
+.recipeportions-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+@media (max-width: 900px) { .recipeportions-split { grid-template-columns: 1fr; } }
+.recipeportions-input-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-result-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-form-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+.recipeportions-form-row input, .recipeportions-form-row select { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 14px; }
+.recipeportions-form-row input[type="number"] { width: 100px; }
+.recipeportions-btn-small { padding: 8px 16px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+.recipeportions-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+.recipeportions-table th, .recipeportions-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: left; }
+.recipeportions-table th { background: #ecf0f1; }
+.recipeportions-chart-wrap { margin-top: 20px; height: 220px; }
+.recipeportions-history { margin-top: 20px; font-size: 13px; max-height: 200px; overflow-y: auto; }
+.recipeportions-history-item { padding: 8px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; cursor: pointer; }
+.recipeportions-history-item:hover { background: #fafafa; }
+</style>
+</head>
+<body>
+<nav class="recipeportions-nav">
+  <div class="recipeportions-nav-inner">
+    <a href="../index.html" class="recipeportions-logo">Recipe<span>Portions</span></a>
+    <button class="recipeportions-nav-toggle" onclick="document.querySelector('.recipeportions-nav-links').classList.toggle('active')">☰</button>
+    <ul class="recipeportions-nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="recipeportions-breadcrumbs recipeportions-container" style="padding-top:20px;">
+    <a href="../index.html">Home</a> › <a href="index.html">Tools</a> › Portion Size Planner
+  </div>
+
+  <div id="tool_top" data-ad-slot="tool_top" class="recipeportions-ad-slot recipeportions-container"></div>
+
+    <section class="recipeportions-split">
+    <div class="recipeportions-input-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Event Details</h2>
+      <div class="recipeportions-form-row">
+        <label>Event type:</label>
+        <select id="t2_event">
+          <option value="family">Family Dinner</option>
+          <option value="buffet">Buffet</option>
+          <option value="plated">Plated Dinner</option>
+          <option value="cocktail">Cocktail / Appetizers</option>
+        </select>
+      </div>
+      <div class="recipeportions-form-row">
+        <label>Adults:</label><input type="number" id="t2_adults" value="10" min="0">
+        <label>Teens:</label><input type="number" id="t2_teens" value="2" min="0">
+        <label>Kids (&lt;10):</label><input type="number" id="t2_kids" value="2" min="0">
+      </div>
+      <div class="recipeportions-form-row">
+        <label>Dietary restrictions:</label>
+        <input type="number" id="t2_vegetarian" placeholder="Vegetarian" min="0" value="0">
+        <input type="number" id="t2_glutenfree" placeholder="Gluten-free" min="0" value="0">
+        <input type="number" id="t2_dairyfree" placeholder="Dairy-free" min="0" value="0">
+      </div>
+      <div class="recipeportions-form-row">
+        <label>Safety margin (%):</label>
+        <input type="number" id="t2_margin" value="10" min="0" max="50">
+      </div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t2_calc()">Calculate</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t2_reset()">Reset</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t2_export()">Export CSV</button>
+      </div>
+      <div class="recipeportions-history" id="t2_history">
+        <h4 style="font-size:13px;color:#888;margin-bottom:8px;">History (click to load)</h4>
+      </div>
+    </div>
+
+    <div class="recipeportions-result-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Portion Plan</h2>
+      <div id="t2_result"></div>
+      <div class="recipeportions-chart-wrap">
+        <canvas id="t2_chart" width="400" height="220"></canvas>
+      </div>
+      <div id="t2_compare"></div>
+    </div>
+  </section>
+
+  <div id="tool_middle" data-ad-slot="tool_middle" class="recipeportions-ad-slot recipeportions-container"></div>
+
+  <div class="recipeportions-tail recipeportions-container" style="max-width:1200px;">
+    <div class="recipeportions-tail-left">
+      <div class="recipeportions-tail-section">
+        <h3>Related Articles</h3>
+        <a href="../blog/catering-buffet-plated-scaling.html" class="recipeportions-tail-card"><h4>Scaling for Catering: 1.5x Buffet vs 0.8x Plated</h4><p>Event type multipliers and real-world portion math.</p></a>
+        <a href="../blog/scale-any-recipe-servings.html" class="recipeportions-tail-card"><h4>How to Scale Any Recipe by Servings</h4><p>The complete 7-step method for yield-based scaling.</p></a>
+        <a href="../blog/recipe-yield-vs-servings.html" class="recipeportions-tail-card"><h4>What Is Recipe Yield and Why 'Servings' Is Imprecise</h4><p>Why you should weigh your finished dish before scaling.</p></a>
+      </div>
+    </div>
+    <div class="recipeportions-tail-right">
+      <div class="recipeportions-tail-section">
+        <h3>Recommended Tools</h3>
+        <a href="recipe-scaling-calculator.html" class="recipeportions-tail-card"><h4>Recipe Scaling Calculator</h4><p>Scale ingredients with automatic leavening and salt adjustments.</p></a>
+        <a href="pan-substitution-tool.html" class="recipeportions-tail-card"><h4>Pan Size Substitution Tool</h4><p>Make sure your scaled batter fits the pans you own.</p></a>
+        <a href="dietary-scaling-assistant.html" class="recipeportions-tail-card"><h4>Dietary Restriction Scaling Assistant</h4><p>Handle gluten-free, vegan, and low-sodium substitutions.</p></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <div id="tool_bottom" data-ad-slot="tool_bottom" class="recipeportions-ad-slot recipeportions-container"></div>
+
+<footer class="recipeportions-footer">
+  <div class="recipeportions-footer-inner">
+    <div>
+      <h4>RecipePortions</h4>
+      <ul>
+        <li><a href="index.html">Tools</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../disclaimer.html">Disclaimer</a></li>
+        <li><a href="../disclosure.html">Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipeportions-footer-bottom">© 2026 RecipePortions.com. All rights reserved.</div>
+</footer>
+<script src="../ads-loader.js"></script>
+<script>
+(function(){
+  var factors = {family:1.0, buffet:1.5, plated:0.8, cocktail:0.5};
+  var last = null;
+
+  function t2_load(){
+    var h = [];
+    try { h = JSON.parse(localStorage.getItem('t2_history')||'[]'); if(!Array.isArray(h)) h = []; } catch(e) {}
+    var el = document.getElementById('t2_history');
+    var html = '<h4 style="font-size:13px;color:#888;margin-bottom:8px;">History (click to load)</h4>';
+    if(!h.length) html += '<p style="color:#999;font-size:12px;">No history yet.</p>';
+    h.forEach(function(item,i){
+      html += '<div class="recipeportions-history-item" onclick="t2_loadHistory('+i+')">';
+      html += '<span>'+item.event+' | '+item.total+' guests</span>';
+      html += '<span style="color:#999;">'+new Date(item.date).toLocaleString()+'</span>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+  window.t2_loadHistory = function(i){
+    var h = JSON.parse(localStorage.getItem('t2_history')||'[]');
+    if(!h[i]) return;
+    var item = h[i];
+    document.getElementById('t2_event').value = item.event;
+    document.getElementById('t2_adults').value = item.adults;
+    document.getElementById('t2_teens').value = item.teens;
+    document.getElementById('t2_kids').value = item.kids;
+    document.getElementById('t2_margin').value = item.margin;
+    last = item; t2_render(); t2_draw();
+  };
+
+  function t2_calc(){
+    var event = document.getElementById('t2_event').value;
+    var adults = parseInt(document.getElementById('t2_adults').value)||0;
+    var teens = parseInt(document.getElementById('t2_teens').value)||0;
+    var kids = parseInt(document.getElementById('t2_kids').value)||0;
+    var veg = parseInt(document.getElementById('t2_vegetarian').value)||0;
+    var gf = parseInt(document.getElementById('t2_glutenfree').value)||0;
+    var df = parseInt(document.getElementById('t2_dairyfree').value)||0;
+    var margin = parseInt(document.getElementById('t2_margin').value)||0;
+    var factor = factors[event];
+    var adultEquiv = adults + (teens*0.8) + (kids*0.5);
+    var base = adultEquiv * factor;
+    var total = Math.ceil(base * (1 + margin/100));
+    last = {event:event, adults:adults, teens:teens, kids:kids, margin:margin, total:total, adultEquiv:adultEquiv, veg:veg, gf:gf, df:df, date:new Date().toISOString()};
+    var h = JSON.parse(localStorage.getItem('t2_history')||'[]');
+    h.unshift(last); if(h.length>20) h.pop();
+    localStorage.setItem('t2_history', JSON.stringify(h));
+    t2_load(); t2_render(); t2_draw();
+  }
+  function t2_render(){
+    if(!last) return;
+    var html = '<table class="recipeportions-table"><tr><th>Metric</th><th>Value</th></tr>';
+    html += '<tr><td>Event type</td><td>'+last.event+' (factor '+factors[last.event]+'x)</td></tr>';
+    html += '<tr><td>Adult equivalents</td><td>'+last.adultEquiv.toFixed(1)+'</td></tr>';
+    html += '<tr><td>Base portions</td><td>'+(last.adultEquiv*factors[last.event]).toFixed(1)+'</td></tr>';
+    html += '<tr><td>With '+last.margin+'% margin</td><td><strong>'+last.total+'</strong></td></tr>';
+    html += '<tr><td>Vegetarian</td><td>'+last.veg+'</td></tr>';
+    html += '<tr><td>Gluten-free</td><td>'+last.gf+'</td></tr>';
+    html += '<tr><td>Dairy-free</td><td>'+last.df+'</td></tr>';
+    html += '</table>';
+    document.getElementById('t2_result').innerHTML = html;
+  }
+  function t2_draw(){
+    if(!last) return;
+    var c = document.getElementById('t2_chart');
+    var ctx = c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    var data = [last.adults, last.teens, last.kids, last.veg, last.gf, last.df];
+    var labels = ['Adults','Teens','Kids','Veg','GF','DF'];
+    var max = Math.max.apply(null, data); if(max<=0) max=1;
+    var barW = (c.width-40)/data.length;
+    ctx.fillStyle = '#d35400';
+    data.forEach(function(d,i){
+      var h = (d/max)*180;
+      ctx.fillRect(20+i*barW+4, c.height-h-20, barW-8, h);
+      ctx.fillStyle='#333'; ctx.font='11px sans-serif';
+      ctx.fillText(labels[i], 20+i*barW+4, c.height-6);
+      ctx.fillStyle='#d35400';
+    });
+    ctx.fillStyle='#666'; ctx.font='12px sans-serif';
+    ctx.fillText('Guest Breakdown', 10, 14);
+  }
+  function t2_reset(){
+    last=null; localStorage.removeItem('t2_history');
+    document.getElementById('t2_result').innerHTML='';
+    var ctx=document.getElementById('t2_chart').getContext('2d'); ctx.clearRect(0,0,400,220);
+    t2_load();
+  }
+  function t2_export(){
+    if(!last) return alert('Calculate first.');
+    var csv = 'Metric,Value
+';
+    csv += 'Event,'+last.event+'
+';
+    csv += 'Adults,'+last.adults+'
+';
+    csv += 'Teens,'+last.teens+'
+';
+    csv += 'Kids,'+last.kids+'
+';
+    csv += 'AdultEquivalents,'+last.adultEquiv.toFixed(2)+'
+';
+    csv += 'TotalPortions,'+last.total+'
+';
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='portion_plan.csv'; a.click();
+  }
+  window.t2_calc = t2_calc; window.t2_reset = t2_reset; window.t2_export = t2_export; window.t2_loadHistory = t2_loadHistory;
+  t2_load();
+})();
+</script>
+</body>
+</html>
