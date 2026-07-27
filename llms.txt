@@ -1,0 +1,58 @@
+# recipeportions.com
+
+Free online calculators and educational content. Not professional advice.
+
+## Pages
+- Home: https://recipeportions.com/
+- Tools: https://recipeportions.com/tools/
+- Blog: https://recipeportions.com/blog/
+- About: https://recipeportions.com/about.html
+- Contact: https://recipeportions.com/contact.html
+- FAQ: https://recipeportions.com/faq.html
+- Sitemap: https://recipeportions.com/sitemap.html
+
+## Tools
+- Recipe Scaling Calculator | RecipePortions.com: https://recipeportions.com/tools/recipe-scaling-calculator.html
+- Portion Size Planner | RecipePortions.com: https://recipeportions.com/tools/portion-size-planner.html
+- Pan Size Substitution Tool | RecipePortions.com: https://recipeportions.com/tools/pan-substitution-tool.html
+- Baker's Percentage Converter | RecipePortions.com: https://recipeportions.com/tools/bakers-percentage-converter.html
+- Ingredient Density Lookup | RecipePortions.com: https://recipeportions.com/tools/ingredient-density-lookup.html
+- Dietary Restriction Scaling Assistant | RecipePortions.com: https://recipeportions.com/tools/dietary-scaling-assistant.html
+
+## Articles
+- Cooking For One Portion Loneliness 2026 (cooking-for-one-portion-loneliness-2026) -- I cook for one. Have for three years. And my fridge is a graveyard of good intentions. Half an onion. A third of a bell pepper. Two servings of soup that I will never finish. The recipe said "serves 4 -- July 23, 2026
+- The Dinner Party Where I Served 12 People And Ran Out Of Food (the-dinner-party-where-i-served-12-people-and-ran-out-of-food) -- The Dinner Party Where I Served 12 People and Ran Out of Food I was standing in my kitchen in Charleston at 8:45 PM, holding an empty serving dish, and I realized I had made a terrible mistake. The di -- July 12, 2026
+- Charleston Heat Recipe Portions Collapse (charleston-heat-recipe-portions-collapse) -- Why My Recipe Portions Collapsed During Charleston's Heat Dome—And My Family Revolted Emily Clarke I was standing in my kitchen at 6 PM on a Tuesday, the thermometer on the wall reading 91 degrees, tr -- July 06, 2026
+- Doubled Recipe Fed 20 Not 8 (doubled-recipe-fed-20-not-8) -- I was making lasagna for a dinner party. Sixteen people. The recipe said "serves 8." Simple math: double the recipe, feed 16. I bought double the ingredients. I used my largest pot. I filled two 9x13 -- July 06, 2026
+- How to Scale International Recipes: Metric to Imperial (scale-international-recipes) -- UK tablespoons, Australian cups, French flour types, and fresh yeast. The conversion cheat sheet. -- July 01, 2026
+- 12 Holiday Recipes Scaled for Crowds (holiday-recipes-scaled-crowds) -- Thanksgiving, Christmas, and party math. From turkey gravy to 100 cookies. -- June 30, 2026
+- The Complete Pan Size Substitution Guide (complete-pan-substitution-guide) -- Every common pan, its volume, its area, and what you can swap it for without overflow. -- June 29, 2026
+- 8 Dietary Restriction Scaling Rules for Beginners (dietary-restriction-rules) -- The 8 rules that keep gluten-free, vegan, low-sodium, and sugar-free scaling from becoming a disaster. -- June 28, 2026
+- 10 Signs Your Scaled Recipe Is About to Fail (10-signs-scaled-recipe-failing) -- Overflowing batter, fast-rising dough, doming cakes. Spot the warning signs before the oven timer. -- June 27, 2026
+- 15 Tools Every Recipe Scaler Needs in 2026 (15-tools-recipe-scaler) -- From a $22 scale to a probe thermometer. The toolkit that makes scaling possible. -- June 26, 2026
+- The Ultimate Ingredient Density Chart: 150+ Foods (ultimate-density-chart) -- The complete reference for flour, sugar, fat, liquid, leavener, and salt densities. -- June 25, 2026
+- 20 Common Scaling Mistakes and How to Avoid Them (20-scaling-mistakes) -- From leavening to oven capacity to forgetting to label your bowls. The complete checklist. -- June 24, 2026
+- The Night I Cooked For 12 And Fed 4 A Recipe Scaling (the-night-i-cooked-for-12-and-fed-4-a-recipe-scaling) -- The Night I Cooked for 12 and Fed 4: A Recipe Scaling Disaster in Charleston It was my sister's birthday. She was turning 34. I offered to cook dinner for the family — 12 people, including my parents, -- June 24, 2026
+- Pan Volume Math: Why Area Matters More Than You Think (pan-volume-math) -- A 9-inch round and an 8-inch square have the same area. A 9x13 has double. Here's the math. -- June 23, 2026
+- What Is Mise en Place and How It Saves Scaling Mistakes (mise-en-place-scaling) -- Measure everything first. Mix second. The habit that prevents $30 ingredient disasters. -- June 22, 2026
+- The Chemistry of Salt in Baking: Why Linear Scaling Fails (chemistry-of-salt-baking) -- Salt controls yeast, strengthens gluten, and enhances flavor. But it doesn't scale 1:1. -- June 21, 2026
+- Understanding Hydration Ratio in Bread Dough (hydration-ratio-bread) -- 50% to 85% hydration. What each level feels like, bakes like, and tastes like. -- June 20, 2026
+- What Is Recipe Yield and Why 'Servings' Is Imprecise (recipe-yield-vs-servings) -- Stop trusting 'serves 4.' Start weighing your finished dish. Yield is the only honest number. -- June 19, 2026
+- The Science of Leavening: How Baking Powder and Yeast Scale Differently (science-of-leavening) -- Baking soda, baking powder, yeast. Three different chemistries, three different scaling rules. -- June 18, 2026
+- Understanding Ingredient Density: Why 1 Cup of Flour Isn't Always 120g (ingredient-density-explained) -- Sifted, spooned, dipped, packed. The same cup can vary by 80%. Here's the fix. -- June 17, 2026
+- What Is Baker's Percentage and Why Every Cook Should Know It (what-is-bakers-percentage) -- The math that turns recipes into relationships. Once you see it, you can't unsee it. -- June 16, 2026
+- How to Reduce Salt by 25% Without Losing Flavor (reduce-salt-25-percent) -- The slow reduction method that retrains your palate. Plus acid, umami, and herb cheats. -- June 15, 2026
+- Scaling for Catering: 1.5x Buffet vs 0.8x Plated (catering-buffet-plated-scaling) -- Why buffets need 1.5x home portions and plated dinners only need 0.8x. Real event math. -- June 14, 2026
+- How to Calculate Vegan Egg Replacer Quantities (vegan-egg-replacer-quantities) -- Flax, chia, applesauce, aquafaba, silken tofu, and commercial powders. Which to use and when. -- June 13, 2026
+- The Complete Guide to Gluten-Free Flour Blend Ratios (gluten-free-flour-blend-ratios) -- The 40/30/30 blend that works for 90% of gluten-free baking, plus scaling rules for xanthan gum. -- June 12, 2026
+- How to Scale Recipes for Dietary Restrictions (scale-dietary-restrictions) -- Gluten-free, vegan, low-sodium, sugar-free. The substitutions that change the math. -- June 11, 2026
+- Building Your First Ingredient Density Reference Chart (ingredient-density-chart) -- Stop guessing how much a cup of flour weighs. Build a laminated chart in one afternoon. -- June 10, 2026
+- How to Substitute Pan Sizes Without Disaster (substitute-pan-sizes) -- Volume, area, depth, and baking time. The math behind swapping pans without overflow. -- June 09, 2026
+- A Step-by-Step Guide to Baker's Percentage Conversion (bakers-percentage-guide) -- Flour is 100%. Everything else is a percentage. Here's how to convert any recipe. -- June 08, 2026
+- How to Scale Any Recipe by Servings: The Complete Method (scale-any-recipe-servings) -- The 7-step method I teach on day one. From yield calculation to equipment checks. -- June 07, 2026
+- The Student Who Scaled a Soufflé for 50 and Lived to Tell (student-scaled-souffle-50) -- Jasmine failed algebra twice. Then she scaled a chocolate soufflé to 50 servings. -- June 06, 2026
+- Why My Kitchen Is Too Small for My Ambitions (But Perfect for Testing) (kitchen-too-small) -- An 8x10 foot kitchen forces me to test small and scale on paper. Here's why that's a gift. -- June 05, 2026
+- From Pastry Chef to Math Teacher: My Flour-Dusted Journey (pastry-chef-to-math-teacher) -- How I left the hotel kitchen, got a math degree, and started teaching culinary math. -- June 04, 2026
+- The Day I Forgot to Adjust Baking Soda and Ruined a Batch (forgot-adjust-baking-soda) -- I made chocolate chip cookies that tasted like soap. Here's why, and the formula that prevents it. -- June 03, 2026
+- How I Scaled a 12-Serving Recipe to Feed 200 Without Math Panic (scaled-12-serving-to-200) -- A community college event with 200 students, a $200 budget, and one mac and cheese recipe. -- June 02, 2026
+- The Wedding Cake That Collapsed at 2 a.m.: My Scaling Nightmare (wedding-cake-collapsed-2am) -- The story of a wedding cake disaster that taught me leavening doesn't scale linearly. -- June 01, 2026
