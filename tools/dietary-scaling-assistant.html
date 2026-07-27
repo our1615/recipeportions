@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dietary Restriction Scaling Assistant | RecipePortions.com</title>
+<meta name="description" content="Gluten-free blends, vegan egg replacers, low-sodium reduction, and sugar substitution math.">
+<link rel="canonical" href="https://recipeportions.com/tools/dietary-scaling-assistant.html">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="Dietary Restriction Scaling Assistant | RecipePortions.com">
+<meta property="og:description" content="Handle gluten-free, vegan, low-sodium, and sugar-free scaling automatically.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://recipeportions.com/tools/dietary-scaling-assistant.html">
+<meta property="og:image" content="https://recipeportions.com/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Dietary Restriction Scaling Assistant",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Gluten-free blends, vegan egg replacers, low-sodium reduction, and sugar substitution math."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://recipeportions.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://recipeportions.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Dietary Restriction Scaling Assistant", "item": "https://recipeportions.com/tools/dietary-scaling-assistant.html"}
+  ]
+}
+</script>
+<style>
+.recipeportions-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+@media (max-width: 900px) { .recipeportions-split { grid-template-columns: 1fr; } }
+.recipeportions-input-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-result-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-form-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+.recipeportions-form-row input, .recipeportions-form-row select { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 14px; }
+.recipeportions-form-row input[type="number"] { width: 100px; }
+.recipeportions-btn-small { padding: 8px 16px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+.recipeportions-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+.recipeportions-table th, .recipeportions-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: left; }
+.recipeportions-table th { background: #ecf0f1; }
+.recipeportions-chart-wrap { margin-top: 20px; height: 220px; }
+</style>
+</head>
+<body>
+<nav class="recipeportions-nav">
+  <div class="recipeportions-nav-inner">
+    <a href="../index.html" class="recipeportions-logo">Recipe<span>Portions</span></a>
+    <button class="recipeportions-nav-toggle" onclick="document.querySelector('.recipeportions-nav-links').classList.toggle('active')">☰</button>
+    <ul class="recipeportions-nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="recipeportions-breadcrumbs recipeportions-container" style="padding-top:20px;">
+    <a href="../index.html">Home</a> › <a href="index.html">Tools</a> › Dietary Restriction Scaling Assistant
+  </div>
+
+  <div id="tool_top" data-ad-slot="tool_top" class="recipeportions-ad-slot recipeportions-container"></div>
+
+    <section class="recipeportions-split">
+    <div class="recipeportions-input-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Dietary Mode</h2>
+      <div class="recipeportions-form-row">
+        <select id="t6_mode" onchange="t6_update()">
+          <option value="glutenfree">Gluten-Free Flour Blend</option>
+          <option value="vegan">Vegan Egg Replacer</option>
+          <option value="lowsodium">Low-Sodium Reduction</option>
+          <option value="sugarfree">Sugar Substitution</option>
+        </select>
+      </div>
+      <div id="t6_inputs"></div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t6_calc()">Calculate</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t6_reset()">Reset</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t6_export()">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="recipeportions-result-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Adjusted Recipe</h2>
+      <div id="t6_result"></div>
+      <div class="recipeportions-chart-wrap">
+        <canvas id="t6_chart" width="400" height="220"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <div id="tool_middle" data-ad-slot="tool_middle" class="recipeportions-ad-slot recipeportions-container"></div>
+
+  <div class="recipeportions-tail recipeportions-container" style="max-width:1200px;">
+    <div class="recipeportions-tail-left">
+      <div class="recipeportions-tail-section">
+        <h3>Related Articles</h3>
+        <a href="../blog/scale-dietary-restrictions.html" class="recipeportions-tail-card"><h4>How to Scale Recipes for Dietary Restrictions</h4><p>Why substitutions change the math.</p></a>
+        <a href="../blog/gluten-free-flour-blend-ratios.html" class="recipeportions-tail-card"><h4>The Complete Guide to Gluten-Free Flour Blend Ratios</h4><p>The 40/30/30 blend and xanthan gum scaling.</p></a>
+        <a href="../blog/vegan-egg-replacer-quantities.html" class="recipeportions-tail-card"><h4>How to Calculate Vegan Egg Replacer Quantities</h4><p>Flax, aquafaba, applesauce, and commercial powders.</p></a>
+      </div>
+    </div>
+    <div class="recipeportions-tail-right">
+      <div class="recipeportions-tail-section">
+        <h3>Recommended Tools</h3>
+        <a href="recipe-scaling-calculator.html" class="recipeportions-tail-card"><h4>Recipe Scaling Calculator</h4><p>Scale the base recipe first, then apply dietary adjustments.</p></a>
+        <a href="ingredient-density-lookup.html" class="recipeportions-tail-card"><h4>Ingredient Density Lookup</h4><p>Get gram weights for gluten-free flours and substitutes.</p></a>
+        <a href="portion-size-planner.html" class="recipeportions-tail-card"><h4>Portion Size Planner</h4><p>Plan portions for mixed dietary restriction events.</p></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <div id="tool_bottom" data-ad-slot="tool_bottom" class="recipeportions-ad-slot recipeportions-container"></div>
+
+<footer class="recipeportions-footer">
+  <div class="recipeportions-footer-inner">
+    <div>
+      <h4>RecipePortions</h4>
+      <ul>
+        <li><a href="index.html">Tools</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../disclaimer.html">Disclaimer</a></li>
+        <li><a href="../disclosure.html">Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipeportions-footer-bottom">© 2026 RecipePortions.com. All rights reserved.</div>
+</footer>
+<script src="../ads-loader.js"></script>
+<script>
+(function(){
+  var last = null;
+  function t6_update(){
+    var mode = document.getElementById('t6_mode').value;
+    var html = '';
+    if(mode==='glutenfree'){
+      html += '<div class="recipeportions-form-row"><label>Original flour (g):</label><input type="number" id="t6_gf_flour" value="240"></div>';
+      html += '<div class="recipeportions-form-row"><label>Scaling factor:</label><input type="number" id="t6_gf_factor" value="2" step="any"></div>';
+      html += '<div class="recipeportions-form-row"><label>Liquid adjustment %:</label><input type="number" id="t6_gf_liquid" value="12"></div>';
+    } else if(mode==='vegan'){
+      html += '<div class="recipeportions-form-row"><label>Original eggs:</label><input type="number" id="t6_v_eggs" value="2"></div>';
+      html += '<div class="recipeportions-form-row"><label>Replacer:</label><select id="t6_v_type"><option value="flax">Flax egg</option><option value="applesauce">Applesauce</option><option value="aquafaba">Aquafaba</option><option value="commercial">Commercial powder</option></select></div>';
+      html += '<div class="recipeportions-form-row"><label>Scaling factor:</label><input type="number" id="t6_v_factor" value="2" step="any"></div>';
+    } else if(mode==='lowsodium'){
+      html += '<div class="recipeportions-form-row"><label>Original salt (g):</label><input type="number" id="t6_ls_salt" value="6"></div>';
+      html += '<div class="recipeportions-form-row"><label>Reduction %:</label><input type="number" id="t6_ls_reduce" value="25"></div>';
+      html += '<div class="recipeportions-form-row"><label>Scaling factor:</label><input type="number" id="t6_ls_factor" value="2" step="any"></div>';
+    } else if(mode==='sugarfree'){
+      html += '<div class="recipeportions-form-row"><label>Original sugar (g):</label><input type="number" id="t6_sf_sugar" value="200"></div>';
+      html += '<div class="recipeportions-form-row"><label>Substitute:</label><select id="t6_sf_type"><option value="erythritol">Erythritol</option><option value="allulose">Allulose</option><option value="stevia">Stevia</option></select></div>';
+      html += '<div class="recipeportions-form-row"><label>Scaling factor:</label><input type="number" id="t6_sf_factor" value="2" step="any"></div>';
+    }
+    document.getElementById('t6_inputs').innerHTML = html;
+  }
+  function t6_calc(){
+    var mode = document.getElementById('t6_mode').value;
+    var rows = [];
+    if(mode==='glutenfree'){
+      var flour = parseFloat(document.getElementById('t6_gf_flour').value)||0;
+      var factor = parseFloat(document.getElementById('t6_gf_factor').value)||1;
+      var liq = parseFloat(document.getElementById('t6_gf_liquid').value)||0;
+      var scaledFlour = flour * factor;
+      var xanthan = (0.25 * Math.pow(factor, 0.7)) * (scaledFlour/240);
+      rows.push({name:"Gluten-free flour blend", orig:flour, new:scaledFlour, unit:"g"});
+      rows.push({name:"Xanthan gum", orig:0.25, new:xanthan, unit:"tsp"});
+      rows.push({name:"Extra liquid", orig:(flour*(liq/100)), new:(scaledFlour*(liq/100)), unit:"g"});
+    } else if(mode==='vegan'){
+      var eggs = parseFloat(document.getElementById('t6_v_eggs').value)||0;
+      var factor = parseFloat(document.getElementById('t6_v_factor').value)||1;
+      var type = document.getElementById('t6_v_type').value;
+      var totalEggs = eggs * factor;
+      if(type==='flax' && totalEggs>4){ rows.push({name:"Warning", orig:0, new:0, unit:"Switch to commercial replacer at >4x"}); }
+      var amt = totalEggs; var unit = "egg(s)";
+      if(type==='flax'){ amt = totalEggs + " Tbsp flax + " + (totalEggs*3) + " Tbsp water"; unit=""; }
+      if(type==='applesauce'){ amt = (totalEggs * 0.25).toFixed(2) + " cup"; unit=""; }
+      if(type==='aquafaba'){ amt = (totalEggs * 3).toFixed(1) + " Tbsp"; unit=""; }
+      if(type==='commercial'){ amt = totalEggs + " servings (follow package)"; unit=""; }
+      rows.push({name:"Vegan replacer ("+type+")", orig:eggs, new:amt, unit:unit});
+    } else if(mode==='lowsodium'){
+      var salt = parseFloat(document.getElementById('t6_ls_salt').value)||0;
+      var reduce = parseFloat(document.getElementById('t6_ls_reduce').value)||0;
+      var factor = parseFloat(document.getElementById('t6_ls_factor').value)||1;
+      var reduced = salt * (1 - reduce/100);
+      var scaled = reduced * Math.pow(factor, 0.85);
+      rows.push({name:"Reduced salt baseline", orig:salt, new:reduced, unit:"g"});
+      rows.push({name:"Scaled salt (0.85 exp)", orig:reduced, new:scaled.toFixed(2), unit:"g"});
+    } else if(mode==='sugarfree'){
+      var sugar = parseFloat(document.getElementById('t6_sf_sugar').value)||0;
+      var factor = parseFloat(document.getElementById('t6_sf_factor').value)||1;
+      var type = document.getElementById('t6_sf_type').value;
+      var scaled = sugar * factor;
+      var note = "";
+      if(type==='erythritol') note = "1:1 volume, 0.7x sweetness. Add 10% liquid.";
+      if(type==='allulose') note = "1:1 volume, 0.7x sweetness. Browns like sugar.";
+      if(type==='stevia') note = "1 tsp = 1 cup sugar. Add bulk (applesauce).";
+      rows.push({name:"Sugar substitute ("+type+")", orig:sugar, new:scaled, unit:"g"});
+      rows.push({name:"Note", orig:0, new:note, unit:""});
+    }
+    last = {mode:mode, rows:rows, date:new Date().toISOString()};
+    t6_render(); t6_draw();
+  }
+  function t6_render(){
+    if(!last) return;
+    var html = '<table class="recipeportions-table"><tr><th>Ingredient</th><th>Original</th><th>Adjusted</th><th>Unit/Note</th></tr>';
+    last.rows.forEach(function(r){
+      html += '<tr><td>'+r.name+'</td><td>'+r.orig+'</td><td><strong>'+r.new+'</strong></td><td>'+r.unit+'</td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('t6_result').innerHTML = html;
+  }
+  function t6_draw(){
+    if(!last) return;
+    var c = document.getElementById('t6_chart');
+    var ctx = c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    var data = last.rows.filter(function(r){ return typeof r.new === 'number'; }).slice(0,6);
+    if(!data.length) return;
+    var max = Math.max.apply(null, data.map(function(d){return d.new;}));
+    if(max<=0) max=1;
+    var barW = (c.width-40)/data.length;
+    ctx.fillStyle = '#d35400';
+    data.forEach(function(d,i){
+      var h = (d.new/max)*180;
+      ctx.fillRect(20+i*barW+4, c.height-h-20, barW-8, h);
+      ctx.fillStyle='#333'; ctx.font='10px sans-serif';
+      ctx.fillText(d.name.substring(0,8), 20+i*barW+4, c.height-6);
+      ctx.fillStyle='#d35400';
+    });
+    ctx.fillStyle='#666'; ctx.font='12px sans-serif';
+    ctx.fillText('Adjusted Quantities', 10, 14);
+  }
+  function t6_reset(){
+    last=null; document.getElementById('t6_result').innerHTML='';
+    var ctx=document.getElementById('t6_chart').getContext('2d'); ctx.clearRect(0,0,400,220);
+    t6_update();
+  }
+  function t6_export(){
+    if(!last) return alert('Calculate first.');
+    var csv = 'Ingredient,Original,Adjusted,Unit
+';
+    last.rows.forEach(function(r){ csv += r.name+','+r.orig+','+r.new+','+r.unit+'
+'; });
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='dietary_scaling.csv'; a.click();
+  }
+  window.t6_update = t6_update; window.t6_calc = t6_calc; window.t6_reset = t6_reset; window.t6_export = t6_export;
+  t6_update();
+})();
+</script>
+</body>
+</html>
