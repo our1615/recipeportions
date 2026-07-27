@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Scaling Calculator | RecipePortions.com</title>
+<meta name="description" content="Scale any recipe by servings, pan size, or weight. Auto-adjusts leavening, salt, and spices with correct exponents.">
+<link rel="canonical" href="https://recipeportions.com/tools/recipe-scaling-calculator.html">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="Recipe Scaling Calculator | RecipePortions.com">
+<meta property="og:description" content="Scale any recipe with automatic leavening and salt adjustments.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://recipeportions.com/tools/recipe-scaling-calculator.html">
+<meta property="og:image" content="https://recipeportions.com/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Recipe Scaling Calculator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Scale recipes by servings, pan size, or weight. Auto-adjusts leavening, salt, and spices with correct exponents."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://recipeportions.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://recipeportions.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Recipe Scaling Calculator", "item": "https://recipeportions.com/tools/recipe-scaling-calculator.html"}
+  ]
+}
+</script>
+<style>
+.recipeportions-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+@media (max-width: 900px) { .recipeportions-split { grid-template-columns: 1fr; } }
+.recipeportions-input-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-result-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-form-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+.recipeportions-form-row input, .recipeportions-form-row select { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 14px; }
+.recipeportions-form-row input[type="text"] { flex: 1; min-width: 120px; }
+.recipeportions-form-row input[type="number"] { width: 90px; }
+.recipeportions-btn-small { padding: 8px 16px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+.recipeportions-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+.recipeportions-table th, .recipeportions-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: left; }
+.recipeportions-table th { background: #ecf0f1; }
+.recipeportions-chart-wrap { margin-top: 20px; height: 220px; }
+.recipeportions-history { margin-top: 20px; font-size: 13px; max-height: 200px; overflow-y: auto; }
+.recipeportions-history-item { padding: 8px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; cursor: pointer; }
+.recipeportions-history-item:hover { background: #fafafa; }
+.recipeportions-compare-row { display: flex; gap: 16px; margin-top: 12px; }
+.recipeportions-compare-col { flex: 1; background: #fafafa; padding: 12px; border-radius: 6px; font-size: 13px; }
+</style>
+</head>
+<body>
+<nav class="recipeportions-nav">
+  <div class="recipeportions-nav-inner">
+    <a href="../index.html" class="recipeportions-logo">Recipe<span>Portions</span></a>
+    <button class="recipeportions-nav-toggle" onclick="document.querySelector('.recipeportions-nav-links').classList.toggle('active')">☰</button>
+    <ul class="recipeportions-nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="recipeportions-breadcrumbs recipeportions-container" style="padding-top:20px;">
+    <a href="../index.html">Home</a> › <a href="index.html">Tools</a> › Recipe Scaling Calculator
+  </div>
+
+  <div id="tool_top" data-ad-slot="tool_top" class="recipeportions-ad-slot recipeportions-container"></div>
+
+    <section class="recipeportions-split">
+    <div class="recipeportions-input-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Original Recipe</h2>
+      <div class="recipeportions-form-row">
+        <input type="text" id="t1_name" placeholder="Ingredient name (e.g. Flour)">
+        <input type="number" id="t1_qty" placeholder="Qty" step="any">
+        <select id="t1_unit"><option value="g">g</option><option value="oz">oz</option><option value="cup">cup</option><option value="tsp">tsp</option><option value="Tbsp">Tbsp</option></select>
+        <select id="t1_type">
+          <option value="linear">Linear</option>
+          <option value="leavening">Leavening (0.75)</option>
+          <option value="salt">Salt/Spice (0.85)</option>
+          <option value="yeast">Yeast (0.85)</option>
+          <option value="egg">Egg (round up)</option>
+        </select>
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t1_add()">Add</button>
+      </div>
+      <div id="t1_ingredients" style="margin-bottom:16px;"></div>
+
+      <h3 style="font-size:16px;color:#2c3e50;margin:16px 0 8px;">Scaling Method</h3>
+      <div class="recipeportions-form-row">
+        <select id="t1_method" onchange="t1_updateMethod()">
+          <option value="factor">By Factor</option>
+          <option value="servings">By Servings</option>
+        </select>
+        <input type="number" id="t1_factor" placeholder="Factor (e.g. 4)" step="any" value="2">
+        <input type="number" id="t1_orig_servings" placeholder="Orig. servings" step="1" value="4" style="display:none;">
+        <input type="number" id="t1_target_servings" placeholder="Target servings" step="1" value="8" style="display:none;">
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t1_calculate()">Calculate</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t1_reset()">Reset</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t1_export()">Export CSV</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t1_compare()">Compare</button>
+      </div>
+
+      <div class="recipeportions-history" id="t1_history">
+        <h4 style="font-size:13px;color:#888;margin-bottom:8px;">History (click to load)</h4>
+      </div>
+    </div>
+
+    <div class="recipeportions-result-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Scaled Result</h2>
+      <div id="t1_result"></div>
+      <div class="recipeportions-chart-wrap">
+        <canvas id="t1_chart" width="400" height="220"></canvas>
+      </div>
+      <div id="t1_compare"></div>
+    </div>
+  </section>
+
+  <div id="tool_middle" data-ad-slot="tool_middle" class="recipeportions-ad-slot recipeportions-container"></div>
+
+  <div class="recipeportions-tail recipeportions-container" style="max-width:1200px;">
+    <div class="recipeportions-tail-left">
+      <div class="recipeportions-tail-section">
+        <h3>Related Articles</h3>
+        <a href="../blog/wedding-cake-collapsed-2am.html" class="recipeportions-tail-card"><h4>The Wedding Cake That Collapsed at 2 a.m.: My Scaling Nightmare</h4><p>The story of a wedding cake disaster that taught me leavening doesn't scale linearly.</p></a>
+<a href="../blog/scaled-12-serving-to-200.html" class="recipeportions-tail-card"><h4>How I Scaled a 12-Serving Recipe to Feed 200 Without Math Panic</h4><p>A community college event with 200 students, a $200 budget, and one mac and cheese recipe.</p></a>
+<a href="../blog/forgot-adjust-baking-soda.html" class="recipeportions-tail-card"><h4>The Day I Forgot to Adjust Baking Soda and Ruined a Batch</h4><p>I made chocolate chip cookies that tasted like soap. Here's why, and the formula that prevents it.</p></a>
+
+      </div>
+    </div>
+    <div class="recipeportions-tail-right">
+      <div class="recipeportions-tail-section">
+        <h3>Recommended Tools</h3>
+        <a href="portion-size-planner.html" class="recipeportions-tail-card"><h4>Portion Size Planner</h4><p>Plan portions for events with adult/child/teen ratios.</p></a>
+<a href="pan-substitution-tool.html" class="recipeportions-tail-card"><h4>Pan Size Substitution Tool</h4><p>Swap pans without overflow or underbaking.</p></a>
+<a href="bakers-percentage-converter.html" class="recipeportions-tail-card"><h4>Baker's Percentage Converter</h4><p>Convert recipes to baker's percentage and scale.</p></a>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <div id="tool_bottom" data-ad-slot="tool_bottom" class="recipeportions-ad-slot recipeportions-container"></div>
+
+<footer class="recipeportions-footer">
+  <div class="recipeportions-footer-inner">
+    <div>
+      <h4>RecipePortions</h4>
+      <ul>
+        <li><a href="index.html">Tools</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../disclaimer.html">Disclaimer</a></li>
+        <li><a href="../disclosure.html">Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipeportions-footer-bottom">© 2026 RecipePortions.com. All rights reserved.</div>
+</footer>
+<script src="../ads-loader.js"></script>
+<script>
+(function(){
+  var ingredients = [];
+  var lastResult = null;
+  var compareData = null;
+
+  function t1_load(){
+    try {
+      var raw = localStorage.getItem('t1_ingredients');
+      if(raw) ingredients = JSON.parse(raw);
+    } catch(e) { ingredients = []; }
+    t1_renderIngredients();
+    t1_renderHistory();
+  }
+
+  function t1_save(){
+    localStorage.setItem('t1_ingredients', JSON.stringify(ingredients));
+  }
+
+  function t1_add(){
+    var name = document.getElementById('t1_name').value.trim();
+    var qty = parseFloat(document.getElementById('t1_qty').value);
+    var unit = document.getElementById('t1_unit').value;
+    var type = document.getElementById('t1_type').value;
+    if(!name || isNaN(qty)) return;
+    ingredients.push({name:name, qty:qty, unit:unit, type:type});
+    t1_save(); t1_renderIngredients();
+    document.getElementById('t1_name').value=''; document.getElementById('t1_qty').value='';
+  }
+
+  function t1_remove(i){ ingredients.splice(i,1); t1_save(); t1_renderIngredients(); }
+
+  function t1_renderIngredients(){
+    var el = document.getElementById('t1_ingredients');
+    if(!ingredients.length){ el.innerHTML='<p style="color:#999;font-size:13px;">No ingredients added yet.</p>'; return; }
+    var html = '<table class="recipeportions-table"><tr><th>Name</th><th>Qty</th><th>Unit</th><th>Type</th><th></th></tr>';
+    ingredients.forEach(function(ing,i){
+      html += '<tr><td>'+ing.name+'</td><td>'+ing.qty+'</td><td>'+ing.unit+'</td><td>'+ing.type+'</td><td><button onclick="t1_remove('+i+')" style="background:none;border:none;color:#d35400;cursor:pointer;font-size:12px;">Remove</button></td></tr>';
+    });
+    html += '</table>';
+    el.innerHTML = html;
+  }
+
+  function t1_updateMethod(){
+    var m = document.getElementById('t1_method').value;
+    document.getElementById('t1_factor').style.display = m==='factor'?'inline-block':'none';
+    document.getElementById('t1_orig_servings').style.display = m==='servings'?'inline-block':'none';
+    document.getElementById('t1_target_servings').style.display = m==='servings'?'inline-block':'none';
+  }
+
+  function t1_calculate(){
+    var method = document.getElementById('t1_method').value;
+    var factor = method==='factor' ? parseFloat(document.getElementById('t1_factor').value) : parseFloat(document.getElementById('t1_target_servings').value)/parseFloat(document.getElementById('t1_orig_servings').value);
+    if(isNaN(factor) || factor<=0) return;
+    var result = ingredients.map(function(ing){
+      var mult = factor;
+      if(ing.type==='leavening') mult = Math.pow(factor, 0.75);
+      if(ing.type==='salt' || ing.type==='yeast') mult = Math.pow(factor, 0.85);
+      if(ing.type==='egg') mult = Math.ceil(ing.qty * factor);
+      var newQty = ing.type==='egg' ? mult : ing.qty * mult;
+      return {name:ing.name, orig:ing.qty, newQty:newQty, unit:ing.unit, type:ing.type, factor:mult};
+    });
+    lastResult = {factor:factor, result:result, date:new Date().toISOString()};
+    t1_saveResult();
+    t1_renderResult();
+    t1_drawChart();
+  }
+
+  function t1_saveResult(){
+    try {
+      var hist = JSON.parse(localStorage.getItem('t1_history')||'[]');
+      if(!Array.isArray(hist)) hist = [];
+      hist.unshift(lastResult);
+      if(hist.length>20) hist.pop();
+      localStorage.setItem('t1_history', JSON.stringify(hist));
+    } catch(e) {}
+    t1_renderHistory();
+  }
+
+  function t1_renderHistory(){
+    var hist = [];
+    try { hist = JSON.parse(localStorage.getItem('t1_history')||'[]'); if(!Array.isArray(hist)) hist = []; } catch(e) {}
+    var el = document.getElementById('t1_history');
+    var html = '<h4 style="font-size:13px;color:#888;margin-bottom:8px;">History (click to load)</h4>';
+    if(!hist.length) html += '<p style="color:#999;font-size:12px;">No history yet.</p>';
+    hist.forEach(function(h,i){
+      var factorLabel = (h.factor === Infinity || h.factor === -Infinity || isNaN(h.factor)) ? 'Invalid' : h.factor.toFixed(2);
+      html += '<div class="recipeportions-history-item" onclick="t1_loadHistory('+i+')">';
+      html += '<span>Factor '+factorLabel+' ('+h.result.length+' items)</span>';
+      html += '<span style="color:#999;">'+new Date(h.date).toLocaleString()+'</span>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  window.t1_loadHistory = function(i){
+    var hist = JSON.parse(localStorage.getItem('t1_history')||'[]');
+    if(!hist[i]) return;
+    lastResult = hist[i];
+    t1_renderResult();
+    t1_drawChart();
+  };
+
+  function t1_renderResult(){
+    if(!lastResult) return;
+    var html = '<table class="recipeportions-table"><tr><th>Ingredient</th><th>Original</th><th>Scaled</th><th>Unit</th><th>Multiplier</th></tr>';
+    lastResult.result.forEach(function(r){
+      var factorLabel = r.type==='egg' ? (r.newQty / r.orig).toFixed(3) : r.factor.toFixed(3);
+      html += '<tr><td>'+r.name+'</td><td>'+r.orig.toFixed(2)+'</td><td><strong>'+r.newQty.toFixed(2)+'</strong></td><td>'+r.unit+'</td><td>'+factorLabel+'x</td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('t1_result').innerHTML = html;
+  }
+
+  function t1_drawChart(){
+    if(!lastResult) return;
+    var canvas = document.getElementById('t1_chart');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var data = lastResult.result.slice(0,8);
+    var max = Math.max.apply(null, data.map(function(d){return d.newQty;}));
+    if(max<=0) max=1;
+    var barW = (canvas.width - 40) / data.length;
+    ctx.fillStyle = '#d35400';
+    data.forEach(function(d,i){
+      var h = (d.newQty / max) * 180;
+      ctx.fillRect(20 + i*barW + 4, canvas.height - h - 20, barW - 8, h);
+      ctx.fillStyle = '#333'; ctx.font = '11px sans-serif';
+      ctx.fillText(d.name.substring(0,8), 20 + i*barW + 4, canvas.height - 6);
+      ctx.fillStyle = '#d35400';
+    });
+    ctx.fillStyle = '#666'; ctx.font = '12px sans-serif';
+    ctx.fillText('Scaled Quantities (top 8 ingredients)', 10, 14);
+  }
+
+  function t1_compare(){
+    if(!lastResult) return alert('Calculate first.');
+    if(!compareData){ compareData = lastResult; document.getElementById('t1_compare').innerHTML='<p style="color:#888;font-size:13px;">Saved as comparison A. Calculate again to compare.</p>'; return; }
+    var a = compareData; var b = lastResult;
+    var html = '<div class="recipeportions-compare-row">';
+    html += '<div class="recipeportions-compare-col"><strong>Comparison A</strong><br>Factor: '+a.factor.toFixed(2)+'<br>Items: '+a.result.length+'</div>';
+    html += '<div class="recipeportions-compare-col"><strong>Comparison B</strong><br>Factor: '+b.factor.toFixed(2)+'<br>Items: '+b.result.length+'</div>';
+    html += '</div>';
+    html += '<button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t1_clearCompare()" style="margin-top:8px;">Clear Compare</button>';
+    document.getElementById('t1_compare').innerHTML = html;
+  }
+
+  window.t1_clearCompare = function(){ compareData=null; document.getElementById('t1_compare').innerHTML=''; };
+
+  function t1_reset(){
+    ingredients=[]; lastResult=null; compareData=null;
+    localStorage.removeItem('t1_ingredients'); localStorage.removeItem('t1_history');
+    t1_renderIngredients(); t1_renderHistory(); document.getElementById('t1_result').innerHTML=''; document.getElementById('t1_compare').innerHTML='';
+    var ctx = document.getElementById('t1_chart').getContext('2d'); ctx.clearRect(0,0,400,220);
+  }
+
+  function t1_export(){
+    if(!lastResult) return alert('Calculate first.');
+    var csv = 'Ingredient,Original,Scaled,Unit,Multiplier\n';
+    lastResult.result.forEach(function(r){ csv += r.name+','+r.orig+','+r.newQty+','+r.unit+','+r.factor+'\n'; });
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'scaled_recipe.csv'; a.click();
+  }
+
+  window.t1_add = t1_add; window.t1_remove = t1_remove; window.t1_calculate = t1_calculate;
+  window.t1_compare = t1_compare; window.t1_reset = t1_reset; window.t1_export = t1_export;
+  window.t1_updateMethod = t1_updateMethod; window.t1_loadHistory = t1_loadHistory;
+
+  t1_load();
+})();
+</script>
+</body>
+</html>
