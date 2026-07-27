@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baker's Percentage Converter | RecipePortions.com</title>
+<meta name="description" content="Convert any recipe to baker's percentage. Flour = 100%. Scale up or down while keeping ratios intact.">
+<link rel="canonical" href="https://recipeportions.com/tools/bakers-percentage-converter.html">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="Baker's Percentage Converter | RecipePortions.com">
+<meta property="og:description" content="Convert recipes to baker's percentage and scale by flour weight.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://recipeportions.com/tools/bakers-percentage-converter.html">
+<meta property="og:image" content="https://recipeportions.com/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Baker's Percentage Converter",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Convert any recipe to baker's percentage. Flour = 100%. Scale by flour weight."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://recipeportions.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://recipeportions.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Baker's Percentage Converter", "item": "https://recipeportions.com/tools/bakers-percentage-converter.html"}
+  ]
+}
+</script>
+<style>
+.recipeportions-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+@media (max-width: 900px) { .recipeportions-split { grid-template-columns: 1fr; } }
+.recipeportions-input-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-result-panel { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.recipeportions-form-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+.recipeportions-form-row input { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 14px; }
+.recipeportions-form-row input[type="text"] { flex: 1; min-width: 120px; }
+.recipeportions-form-row input[type="number"] { width: 100px; }
+.recipeportions-btn-small { padding: 8px 16px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+.recipeportions-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+.recipeportions-table th, .recipeportions-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: left; }
+.recipeportions-table th { background: #ecf0f1; }
+.recipeportions-chart-wrap { margin-top: 20px; height: 220px; }
+</style>
+</head>
+<body>
+<nav class="recipeportions-nav">
+  <div class="recipeportions-nav-inner">
+    <a href="../index.html" class="recipeportions-logo">Recipe<span>Portions</span></a>
+    <button class="recipeportions-nav-toggle" onclick="document.querySelector('.recipeportions-nav-links').classList.toggle('active')">☰</button>
+    <ul class="recipeportions-nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="recipeportions-breadcrumbs recipeportions-container" style="padding-top:20px;">
+    <a href="../index.html">Home</a> › <a href="index.html">Tools</a> › Baker's Percentage Converter
+  </div>
+
+  <div id="tool_top" data-ad-slot="tool_top" class="recipeportions-ad-slot recipeportions-container"></div>
+
+    <section class="recipeportions-split">
+    <div class="recipeportions-input-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Recipe Ingredients</h2>
+      <p style="font-size:13px;color:#888;margin-bottom:12px;">Enter weights in grams. Flour will be set to 100% automatically.</p>
+      <div class="recipeportions-form-row">
+        <input type="text" id="t4_name" placeholder="Ingredient (e.g. Water)">
+        <input type="number" id="t4_g" placeholder="Grams" step="any">
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t4_add()">Add</button>
+      </div>
+      <div id="t4_ingredients" style="margin-bottom:16px;"></div>
+      <h3 style="font-size:16px;color:#2c3e50;margin:16px 0 8px;">Target Flour Weight</h3>
+      <div class="recipeportions-form-row">
+        <input type="number" id="t4_flour_target" placeholder="Flour grams" step="any" value="500">
+        <button class="recipeportions-btn recipeportions-btn-primary recipeportions-btn-small" onclick="t4_calc()">Convert & Scale</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t4_reset()">Reset</button>
+        <button class="recipeportions-btn recipeportions-btn-secondary recipeportions-btn-small" onclick="t4_export()">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="recipeportions-result-panel">
+      <h2 style="font-size:22px;color:#2c3e50;margin-bottom:16px;">Baker's Percentage</h2>
+      <div id="t4_result"></div>
+      <div class="recipeportions-chart-wrap">
+        <canvas id="t4_chart" width="400" height="220"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <div id="tool_middle" data-ad-slot="tool_middle" class="recipeportions-ad-slot recipeportions-container"></div>
+
+  <div class="recipeportions-tail recipeportions-container" style="max-width:1200px;">
+    <div class="recipeportions-tail-left">
+      <div class="recipeportions-tail-section">
+        <h3>Related Articles</h3>
+        <a href="../blog/bakers-percentage-guide.html" class="recipeportions-tail-card"><h4>A Step-by-Step Guide to Baker's Percentage Conversion</h4><p>How flour = 100% makes scaling trivial.</p></a>
+        <a href="../blog/what-is-bakers-percentage.html" class="recipeportions-tail-card"><h4>What Is Baker's Percentage and Why Every Cook Should Know It</h4><p>The math that turns recipes into relationships.</p></a>
+        <a href="../blog/hydration-ratio-bread.html" class="recipeportions-tail-card"><h4>Understanding Hydration Ratio in Bread Dough</h4><p>50% to 85% hydration and what each feels like.</p></a>
+      </div>
+    </div>
+    <div class="recipeportions-tail-right">
+      <div class="recipeportions-tail-section">
+        <h3>Recommended Tools</h3>
+        <a href="recipe-scaling-calculator.html" class="recipeportions-tail-card"><h4>Recipe Scaling Calculator</h4><p>For non-bread recipes and complex scaling.</p></a>
+        <a href="ingredient-density-lookup.html" class="recipeportions-tail-card"><h4>Ingredient Density Lookup</h4><p>Convert cups to grams before entering weights.</p></a>
+        <a href="pan-substitution-tool.html" class="recipeportions-tail-card"><h4>Pan Size Substitution Tool</h4><p>Match your dough weight to the right pan.</p></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <div id="tool_bottom" data-ad-slot="tool_bottom" class="recipeportions-ad-slot recipeportions-container"></div>
+
+<footer class="recipeportions-footer">
+  <div class="recipeportions-footer-inner">
+    <div>
+      <h4>RecipePortions</h4>
+      <ul>
+        <li><a href="index.html">Tools</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../disclaimer.html">Disclaimer</a></li>
+        <li><a href="../disclosure.html">Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipeportions-footer-bottom">© 2026 RecipePortions.com. All rights reserved.</div>
+</footer>
+<script src="../ads-loader.js"></script>
+<script>
+(function(){
+  var ingredients = [];
+  var last = null;
+  function t4_load(){
+    try {
+      var raw = localStorage.getItem('t4_ingredients');
+      if(raw) ingredients = JSON.parse(raw);
+    } catch(e) { ingredients = []; }
+    t4_renderList();
+  }
+  function t4_save(){ localStorage.setItem('t4_ingredients', JSON.stringify(ingredients)); }
+  function t4_add(){
+    var name = document.getElementById('t4_name').value.trim();
+    var g = parseFloat(document.getElementById('t4_g').value);
+    if(!name || isNaN(g)) return;
+    ingredients.push({name:name, g:g});
+    t4_save(); t4_renderList();
+    document.getElementById('t4_name').value=''; document.getElementById('t4_g').value='';
+  }
+  function t4_remove(i){ ingredients.splice(i,1); t4_save(); t4_renderList(); }
+  function t4_renderList(){
+    var el = document.getElementById('t4_ingredients');
+    if(!ingredients.length){ el.innerHTML='<p style="color:#999;font-size:13px;">No ingredients added.</p>'; return; }
+    var html = '<table class="recipeportions-table"><tr><th>Name</th><th>Grams</th><th></th></tr>';
+    ingredients.forEach(function(ing,i){
+      html += '<tr><td>'+ing.name+'</td><td>'+ing.g+'</td><td><button onclick="t4_remove('+i+')" style="background:none;border:none;color:#d35400;cursor:pointer;font-size:12px;">Remove</button></td></tr>';
+    });
+    html += '</table>';
+    el.innerHTML = html;
+  }
+  function t4_calc(){
+    if(!ingredients.length) return;
+    var flour = ingredients.find(function(x){ return x.name.toLowerCase().indexOf('flour')>-1; });
+    if(!flour) flour = ingredients[0];
+    var flourG = flour.g;
+    var target = parseFloat(document.getElementById('t4_flour_target').value)||flourG;
+    var rows = ingredients.map(function(ing){
+      var pct = (ing.g / flourG) * 100;
+      var scaled = (pct/100) * target;
+      return {name:ing.name, orig:ing.g, pct:pct, scaled:scaled};
+    });
+    last = {flourG:flourG, target:target, rows:rows, date:new Date().toISOString()};
+    t4_renderResult(); t4_draw();
+  }
+  function t4_renderResult(){
+    if(!last) return;
+    var html = '<table class="recipeportions-table"><tr><th>Ingredient</th><th>Original (g)</th><th>%</th><th>Scaled (g)</th></tr>';
+    last.rows.forEach(function(r){
+      html += '<tr><td>'+r.name+'</td><td>'+r.orig.toFixed(1)+'</td><td>'+r.pct.toFixed(1)+'%</td><td><strong>'+r.scaled.toFixed(1)+'</strong></td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('t4_result').innerHTML = html;
+  }
+  function t4_draw(){
+    if(!last) return;
+    var c = document.getElementById('t4_chart');
+    var ctx = c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    var data = last.rows.slice(0,6);
+    var max = Math.max.apply(null, data.map(function(d){return d.scaled;}));
+    if(max<=0) max=1;
+    var barW = (c.width-40)/data.length;
+    ctx.fillStyle = '#d35400';
+    data.forEach(function(d,i){
+      var h = (d.scaled/max)*180;
+      ctx.fillRect(20+i*barW+4, c.height-h-20, barW-8, h);
+      ctx.fillStyle='#333'; ctx.font='10px sans-serif';
+      ctx.fillText(d.name.substring(0,8), 20+i*barW+4, c.height-6);
+      ctx.fillStyle='#d35400';
+    });
+    ctx.fillStyle='#666'; ctx.font='12px sans-serif';
+    ctx.fillText('Scaled Weights (g)', 10, 14);
+  }
+  function t4_reset(){
+    ingredients=[]; last=null;
+    localStorage.removeItem('t4_ingredients');
+    t4_renderList(); document.getElementById('t4_result').innerHTML='';
+    var ctx=document.getElementById('t4_chart').getContext('2d'); ctx.clearRect(0,0,400,220);
+  }
+  function t4_export(){
+    if(!last) return alert('Calculate first.');
+    var csv = 'Ingredient,OriginalGrams,Percentage,ScaledGrams
+';
+    last.rows.forEach(function(r){ csv += r.name+','+r.orig+','+r.pct.toFixed(2)+','+r.scaled.toFixed(2)+'
+'; });
+    var blob = new Blob([csv], {type:'text/csv'});
+    var a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='bakers_percentage.csv'; a.click();
+  }
+  window.t4_add = t4_add; window.t4_remove = t4_remove; window.t4_calc = t4_calc;
+  window.t4_reset = t4_reset; window.t4_export = t4_export;
+  t4_load();
+})();
+</script>
+</body>
+</html>
